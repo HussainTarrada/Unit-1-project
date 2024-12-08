@@ -1,14 +1,21 @@
 #Characters{
-    background-color: gray;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: inline-block;
+    width: 20%;
+    margin-top: 100px;
+    background-color: rgb(227, 211, 211);
 }
 
 button{
-    background-color: peru;
+    background-color: gray;
+    border-color: black;
     margin: 2px;
     padding: 5px;
     font-size: 20px;
     border-radius: 20px;
+}
+
+img{
+    display: inline-block;
+    margin-left: 500px;
+    width: 500px;
 }
