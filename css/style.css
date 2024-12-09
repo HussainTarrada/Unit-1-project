@@ -1,11 +1,12 @@
 #Characters{
+    display: flex;
     display: inline-block;
     width: 20%;
     margin-top: 100px;
     background-color: rgb(227, 211, 211);
 }
 
-button{
+.alphabet{
     background-color: gray;
     border-color: black;
     margin: 2px;
@@ -15,7 +16,19 @@ button{
 }
 
 img{
+    display: flex;
     display: inline-block;
-    margin-left: 500px;
+    margin-left: 200px;
+    border: 20px;
     width: 500px;
+}
+
+#startButton{
+    display: inline-block;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.spaces{
+    
 }

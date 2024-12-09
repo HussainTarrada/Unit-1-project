@@ -1,21 +1,23 @@
 let fruits = ["Banana", "Apple", "Orange", "Blueberry", "Avocado", "Grapes", "Lemon", "Tomato", "Potato", "Dates", "Watermelon", "Coconut", "Mushrooms", "Strawberry", "Mango", "Cherry", "Pineapple"]
 
-const myFruit = fruits[Math.floor(Math.random() * fruits.length)]
 
-console.log(myFruit)
-
-console.log(myFruit.length)
 
 let mode = ""
 
 const letterElement = document.querySelector("#Letters")
 
+const myStartButton = document.querySelector("#startButton")
+
+
 function myWord(){
+    const myFruit = fruits[Math.floor(Math.random() * fruits.length)]
+    console.log(myFruit)
+    console.log(myFruit.length)
     for(let i=0; i<myFruit.length; i++){
-        const word = document.createElement("p");
-        const space = document.createTextNode("_")
-        word.appendChild(space)
+        var div = document.createElement("div")
+        div.setAttribute('class', 'spaces')
     }
 }
 
-myWord()
+
+myStartButton.addEventListener("click", myWord)
