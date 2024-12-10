@@ -1,8 +1,12 @@
+#Game{
+    display: flex;
+    flex-direction: column;
+}
+
 #Characters{
     display: flex;
-    display: inline-block;
+    flex-wrap: wrap;
     width: 20%;
-    margin-top: 100px;
     background-color: rgb(227, 211, 211);
 }
 
@@ -17,8 +21,6 @@
 
 img{
     display: flex;
-    display: inline-block;
-    margin-left: 200px;
     border: 20px;
     width: 500px;
 }
@@ -30,5 +32,9 @@ img{
 }
 
 .spaces{
-    
+    width: 10px;
+    height: 2px;
+    color: black;
+    background-color: black;
+
 }
