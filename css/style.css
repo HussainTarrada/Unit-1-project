@@ -38,3 +38,11 @@ img{
     background-color: black;
 
 }
+
+#Letters{
+    width: 50%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}

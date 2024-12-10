@@ -1,6 +1,8 @@
-let fruits = ["Banana", "Apple", "Orange", "Blueberry", "Avocado", "Grapes", "Lemon", "Tomato", "Potato", "Dates", "Watermelon", "Coconut", "Mushrooms", "Strawberry", "Mango", "Cherry", "Pineapple"]
+let fruits = ["BANANA", "APPLE", "ORANGE", "BLUEBERRY", "AVOCADO", "GRAPES", "LEMON", "TOMATO", "POTATO", "DATES", "WATERMELON", "COCONUT", "MUSHROOMS", "STRAWBERRY", "MANGO", "CHERRY", "PINEAPPLE"]
 
 let myFruit = ""
+
+let isClicked = false
 
 let mode = ""
 
@@ -10,6 +12,7 @@ const myStartButton = document.querySelector("#startButton")
 
 const myAlphabets = document.querySelectorAll(".alphabet")
 
+let div
 
 function myWord(){
     if(myFruit !== ""){
@@ -20,25 +23,37 @@ function myWord(){
     console.log(myFruit)
     console.log(myFruit.length)
     for(let i=0; i<myFruit.length; i++){
-        let div = document.createElement("div")
+        div = document.createElement("div")
         div.innerText = " ___ "
         letterElement.appendChild(div)
     }
-   wordSplitter()
+    console.log(div)
+//    wordSplitter()
 }
 
-function wordSplitter(){
-    const myFruitArray = myFruit.split( "" )
-    console.log(myFruitArray)
-    
+// function wordSplitter(event){
+//     const myFruitArray = myFruit.split( "" )
+//     console.log(myFruitArray)
+//     console.log(myAlphabets)
+//     for(let i=0; i<myFruitArray.length; i++){
+//     }
 
-}
+// }
 
 
 myStartButton.addEventListener("click", myWord)
 
 myAlphabets.forEach((letter)=>{
-    letter.addEventListener("click", 
-        console.log(letter)
-    )
+    letter.addEventListener("click", (element) =>{
+    const myFruitArray = myFruit.split( "" )
+    console.log(myFruitArray)
+    console.log(element.target.innerText)
+    for(let i=0; i<myFruitArray.length; i++){
+        console.log(myFruitArray[i])
+        if(myFruitArray[i] == element.target.innerText){
+            div.innerText = element.target.innerText
+            console.log(div)
+        }
+    }
+})
 })
