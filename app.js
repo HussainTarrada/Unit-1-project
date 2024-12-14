@@ -12,7 +12,9 @@ const myStartButton = document.querySelector("#startButton")
 
 const myAlphabets = document.querySelectorAll(".alphabet")
 
-let div
+const gameMessage = document.querySelector("#gMessage")
+
+let div = []
 
 function myWord(){
     if(myFruit !== ""){
@@ -22,12 +24,14 @@ function myWord(){
 
     console.log(myFruit)
     console.log(myFruit.length)
+    // creating spaces for puttiing the letters in
     for(let i=0; i<myFruit.length; i++){
-        div = document.createElement("div")
-        div.innerText = " ___ "
-        letterElement.appendChild(div)
+        div[i] = document.createElement("div")
+        div[i].innerText = " ___ "
+        letterElement.appendChild(div[i])
     }
     console.log(div)
+    gameMessage.innerText = "Choose a letter"
 //    wordSplitter()
 }
 
@@ -40,6 +44,7 @@ function myWord(){
 
 // }
 
+console.log(gameMessage)
 
 myStartButton.addEventListener("click", myWord)
 
@@ -48,11 +53,29 @@ myAlphabets.forEach((letter)=>{
     const myFruitArray = myFruit.split( "" )
     console.log(myFruitArray)
     console.log(element.target.innerText)
+    // replacing the spaces with the letter:
     for(let i=0; i<myFruitArray.length; i++){
         console.log(myFruitArray[i])
-        if(myFruitArray[i] == element.target.innerText){
-            div.innerText = element.target.innerText
+        if(element.target.innerText == myFruitArray[i]){
+            div[i].innerText = element.target.innerText
             console.log(div)
+            gameMessage.innerText = "Corret! Keep going"
+            gameMessage.style.color = "green"
+        }
+        else if(element.target.innerText !== myFruitArray[i] && div[i] === " ___ "){
+            gameMessage.innerText = "Wrong! Try Again"
+            gameMessage.style.color = "red"
+        }
+        else{
+            return
+        }
+        // check if win or loose:
+        if(div[i] !== " ___ " && element.target.innerText == myFruitArray[i]){
+            gameMessage.innerText = "Well done! You win"
+            gameMessage.style.color = "Green"
+        }
+        else if(div[i] == " ___ " && element.target.innerText !== myFruitArray[i]){
+            
         }
     }
 })
