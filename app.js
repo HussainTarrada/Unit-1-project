@@ -4,6 +4,10 @@ let myFruit = ""
 
 let isClicked = false
 
+let correctLetter = false
+
+let completeWord = false
+
 let mode = ""
 
 const letterElement = document.querySelector("#Letters")
@@ -44,6 +48,40 @@ function myWord(){
 
 // }
 
+
+function displayMessage(element){
+//   check if win or loose:
+for(let i=0; i<element.length; i++){
+        if(completeWord === true && correctLetter === true){
+            gameMessage.innerText = "Well done! You win"
+            gameMessage.style.color = "Green"
+        }
+        else if(completeWord === false && correctLetter === true){
+            gameMessage.innerText = "Correct! Keep Going"
+            gameMessage.style.color = "Green"
+        }
+        else if(completeWord === true && correctLetter === false){
+            gameMessage.innerText = "You Lost! Try Again"
+            gameMessage.style.color = "red"
+        }
+        else{
+            gameMessage.innerText = "Wrong! Try Another Letter"
+            gameMessage.style.color = "red"
+        }
+    }
+}
+
+function checkWordCompletion(element){
+    for(let i=0; i<element.length; i++){
+        if(div[i].innerText !== " ___ "){
+            completeWord = false
+        }
+        else{
+            completeWord = true
+        }
+    }
+}
+
 console.log(gameMessage)
 
 myStartButton.addEventListener("click", myWord)
@@ -55,28 +93,24 @@ myAlphabets.forEach((letter)=>{
     console.log(element.target.innerText)
     // replacing the spaces with the letter:
     for(let i=0; i<myFruitArray.length; i++){
+        // console.log(completeWord)
         console.log(myFruitArray[i])
-        if(element.target.innerText == myFruitArray[i]){
+        if(element.target.innerText === myFruitArray[i]){
             div[i].innerText = element.target.innerText
             console.log(div)
-            gameMessage.innerText = "Corret! Keep going"
-            gameMessage.style.color = "green"
+            // gameMessage.innerText = "Correct! Keep Going"
+            // gameMessage.style.color = "Green"
+            console.log(div[i].innerText)
+            correctLetter = true
         }
-        else if(element.target.innerText !== myFruitArray[i] && div[i] === " ___ "){
-            gameMessage.innerText = "Wrong! Try Again"
-            gameMessage.style.color = "red"
-        }
-        else{
-            return
-        }
-        // check if win or loose:
-        if(div[i] !== " ___ " && element.target.innerText == myFruitArray[i]){
-            gameMessage.innerText = "Well done! You win"
-            gameMessage.style.color = "Green"
-        }
-        else if(div[i] == " ___ " && element.target.innerText !== myFruitArray[i]){
-            
-        }
+       else{
+        correctLetter = false
+       }
     }
+        checkWordCompletion(myFruitArray)
+        console.log(correctLetter)
+        console.log(completeWord)
+        console.log(div)
+        displayMessage(myFruitArray)
 })
 })
