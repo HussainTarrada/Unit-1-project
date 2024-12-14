@@ -52,19 +52,19 @@ function myWord(){
 function displayMessage(element){
 //   check if win or loose:
 for(let i=0; i<element.length; i++){
-        if(completeWord === true && correctLetter === true){
+        if(element[i] === div[i].innerText){
             gameMessage.innerText = "Well done! You win"
             gameMessage.style.color = "Green"
         }
-        else if(completeWord === false && correctLetter === true){
+        else if(correctLetter === true && completeWord === false){
             gameMessage.innerText = "Correct! Keep Going"
             gameMessage.style.color = "Green"
         }
-        else if(completeWord === true && correctLetter === false){
+        else if(completeWord === true && element[i] !== div[i].innerText){
             gameMessage.innerText = "You Lost! Try Again"
             gameMessage.style.color = "red"
         }
-        else{
+        else if(completeWord === false && correctLetter === false){
             gameMessage.innerText = "Wrong! Try Another Letter"
             gameMessage.style.color = "red"
         }
@@ -95,15 +95,17 @@ myAlphabets.forEach((letter)=>{
     for(let i=0; i<myFruitArray.length; i++){
         // console.log(completeWord)
         console.log(myFruitArray[i])
-        if(element.target.innerText === myFruitArray[i]){
+        if(element.target.innerText === myFruitArray[i] && myFruitArray[i] !== div[i].innerText){
             div[i].innerText = element.target.innerText
             console.log(div)
             // gameMessage.innerText = "Correct! Keep Going"
             // gameMessage.style.color = "Green"
             console.log(div[i].innerText)
             correctLetter = true
+            completeWord = false
         }
-       else{
+       else if(element.target.innerText !== myFruitArray[i] && myFruitArray[i] === div[i].innerText){
+        completeWord = true
         correctLetter = false
        }
     }
