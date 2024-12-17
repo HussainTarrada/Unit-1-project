@@ -3,6 +3,17 @@
     flex-direction: column;
 }
 
+#barList{
+    background-color: gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+.modeButton{
+    display: flex;    
+}
+
 #Characters{
     display: flex;
     flex-wrap: wrap;

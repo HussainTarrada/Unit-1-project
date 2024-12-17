@@ -1,6 +1,12 @@
 let fruits = ["BANANA", "APPLE", "ORANGE", "BLUEBERRY", "AVOCADO", "GRAPES", "LEMON", "TOMATO", "POTATO", "DATES", "WATERMELON", "COCONUT", "MUSHROOMS", "STRAWBERRY", "MANGO", "CHERRY", "PINEAPPLE"]
 
-let myFruit = ""
+let myModeChoice = ""
+
+let sport = ["FOOTBALL", "BASKETBALL", "RUGBY", "CRICKET", "BASEBALL", "VOLLEYBALL", "TENNIS", "BOXING", "SWIMMING", "RUNNING", "GOLF", "HANDBALL"]
+
+let actor = ["LEONARDO DICAPRIO", "ROBERT DOWNEY", "JOHNNY DEPP", "TOM HANKS", "DENZEL WASHINGTON", "TOM CRUISE", "BRAD PITT", "JOAQUIN PHOENIX", "GEORGE CLOONEY"]
+
+let myArray = []
 
 let isClicked = false
 
@@ -10,7 +16,11 @@ let completeWord = false
 
 let count = 0
 
-let mode = ""
+let myMode = ""
+
+let div = []
+
+let divBar = ""
 
 const letterElement = document.querySelector("#Letters")
 
@@ -22,22 +32,34 @@ const gameMessage = document.querySelector("#gMessage")
 
 const myImage = document.querySelector("#Image")
 
-
-let div = []
-
+const myModeButton = document.querySelectorAll(".modeButton")
 
 
+myModeButton.forEach((mode)=>{
+    mode.addEventListener("click",(element)=>{
+        if(element.target.innerText === "Easy"){
+            myArray = fruits
+        }
+        else if(element.target.innerText === "Medium"){
+            myArray = sport
+        }
+        else if(element.target.innerText === "Hard"){
+            myArray = actor
+        }
+        console.log(myArray)
+    })
+})
 
 function myWord(){
-    if(myFruit !== ""){
+    if(myModeChoice !== ""){
         return
     }
-    myFruit = fruits[Math.floor(Math.random() * fruits.length)]
+    myModeChoice = myArray[Math.floor(Math.random() * myArray.length)]
 
-    console.log(myFruit)
-    console.log(myFruit.length)
+    console.log(myModeChoice)
+    console.log(myModeChoice.length)
     // creating spaces for puttiing the letters in
-    for(let i=0; i<myFruit.length; i++){
+    for(let i=0; i<myModeChoice.length; i++){
         div[i] = document.createElement("div")
         div[i].innerText = " ___ "
         letterElement.appendChild(div[i])
@@ -121,15 +143,15 @@ myStartButton.addEventListener("click", myWord)
 
 myAlphabets.forEach((letter)=>{
     letter.addEventListener("click", (element) =>{
-    const myFruitArray = myFruit.split( "" )
-    console.log(myFruitArray)
+    const myArray = myModeChoice.split( "" )
+    console.log(myArray)
     console.log(element.target.innerText)
-    checkWordCompletion(myFruitArray)
+    checkWordCompletion(myArray)
     // replacing the spaces with the letter:
-    for(let i=0; i<myFruitArray.length; i++){
+    for(let i=0; i<myArray.length; i++){
         // console.log(completeWord)
-        console.log(myFruitArray[i])
-        if(element.target.innerText === myFruitArray[i] && element.target.innerText !== div[i].innerText){
+        console.log(myArray[i])
+        if(element.target.innerText === myArray[i] && element.target.innerText !== div[i].innerText){
             div[i].innerText = element.target.innerText
             console.log(div)
             // gameMessage.innerText = "Correct! Keep Going"
@@ -137,7 +159,7 @@ myAlphabets.forEach((letter)=>{
             console.log(div[i].innerText)
             correctLetter = true
         }
-       else if(element.target.innerText !== myFruitArray[i] && element.target.innerText === div[i].innerText){
+       else if(element.target.innerText !== myArray[i] && element.target.innerText === div[i].innerText){
         correctLetter = false
        }
     //    else if(myFruitArray[i] === div[i].innerText){
@@ -149,8 +171,8 @@ myAlphabets.forEach((letter)=>{
         console.log(correctLetter)
         console.log(completeWord)
         console.log(div)
-        changePicture(myFruitArray)
-        displayMessage(myFruitArray)
+        changePicture(myArray)
+        displayMessage(myArray)
       
 })
 })
