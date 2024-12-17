@@ -34,17 +34,28 @@ const myImage = document.querySelector("#Image")
 
 const myModeButton = document.querySelectorAll(".modeButton")
 
+const theMode = document.querySelector("#mode")
+
 
 myModeButton.forEach((mode)=>{
     mode.addEventListener("click",(element)=>{
         if(element.target.innerText === "Easy"){
             myArray = fruits
+            theMode.innerText = "Hint: fruit"
+            element.target.style.color = "brown"
+            gameMessage.innerText = "start the game"
         }
         else if(element.target.innerText === "Medium"){
             myArray = sport
+            theMode.innerText = "Hint: sport"
+            element.target.style.color = "brown"
+            gameMessage.innerText = "start the game"
         }
         else if(element.target.innerText === "Hard"){
             myArray = actor
+            theMode.innerText = "Hint: actor"
+            element.target.style.color = "brown"
+            gameMessage.innerText = "start the game"
         }
         console.log(myArray)
     })
@@ -158,9 +169,14 @@ myAlphabets.forEach((letter)=>{
             // gameMessage.style.color = "Green"
             console.log(div[i].innerText)
             correctLetter = true
+            element.target.style.color = "brown"
         }
        else if(element.target.innerText !== myArray[i] && element.target.innerText === div[i].innerText){
         correctLetter = false
+        element.target.style.color = "brown"
+       }
+       else{
+        element.target.style.color = "brown"
        }
     //    else if(myFruitArray[i] === div[i].innerText){
     //     completeWord = true
