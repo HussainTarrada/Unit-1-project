@@ -8,6 +8,8 @@ let correctLetter = false
 
 let completeWord = false
 
+let count = 0
+
 let mode = ""
 
 const letterElement = document.querySelector("#Letters")
@@ -17,6 +19,8 @@ const myStartButton = document.querySelector("#startButton")
 const myAlphabets = document.querySelectorAll(".alphabet")
 
 const gameMessage = document.querySelector("#gMessage")
+
+const myImage = document.querySelector("#Image")
 
 let div = []
 
@@ -52,19 +56,19 @@ function myWord(){
 function displayMessage(element){
 //   check if win or loose:
 for(let i=0; i<element.length; i++){
-        if(element[i] === div[i].innerText){
+        if(element[i] === div[i].innerText && div[i] === " ___ "){
             gameMessage.innerText = "Well done! You win"
             gameMessage.style.color = "Green"
         }
-        else if(correctLetter === true && completeWord === false){
+        else if(correctLetter === true){
             gameMessage.innerText = "Correct! Keep Going"
             gameMessage.style.color = "Green"
         }
-        else if(completeWord === true && element[i] !== div[i].innerText){
+        else if(element[i] !== div[i].innerText && completeWord === true && count === 5){
             gameMessage.innerText = "You Lost! Try Again"
             gameMessage.style.color = "red"
         }
-        else if(completeWord === false && correctLetter === false){
+        else if(correctLetter === false && completeWord === false){
             gameMessage.innerText = "Wrong! Try Another Letter"
             gameMessage.style.color = "red"
         }
@@ -82,6 +86,29 @@ function checkWordCompletion(element){
     }
 }
 
+function changePicture(element){
+    console.log(count)
+    if(correctLetter === false && count === 0){
+        count = count + 1
+        myImage.src="first mistake.jpg"
+    }
+    else if(correctLetter === false && count === 1){
+        count = count + 1
+        myImage.src="second mistake.jpg"
+    }
+    else if(correctLetter === false && count === 2){
+        count = count + 1
+        myImage.src="third mistake.jpg"
+    }
+    else if(correctLetter === false && count === 3){
+        count = count + 1
+        myImage.src="fourth mistake.jpg"
+    }
+    else if(correctLetter === false && count === 4){
+        count = count + 1
+        myImage.src="fifth mistake.jpg"
+    }
+}
 console.log(gameMessage)
 
 myStartButton.addEventListener("click", myWord)
@@ -102,17 +129,22 @@ myAlphabets.forEach((letter)=>{
             // gameMessage.style.color = "Green"
             console.log(div[i].innerText)
             correctLetter = true
-            completeWord = false
         }
        else if(element.target.innerText !== myFruitArray[i] && myFruitArray[i] === div[i].innerText){
-        completeWord = true
         correctLetter = false
        }
+       else if(myFruitArray[i] === div[i].innerText){
+        completeWord = true
+       }
     }
+
+
         checkWordCompletion(myFruitArray)
         console.log(correctLetter)
         console.log(completeWord)
         console.log(div)
+        changePicture(myFruitArray)
         displayMessage(myFruitArray)
+      
 })
 })
