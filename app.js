@@ -90,36 +90,60 @@ function myWord(){
 // }
 
 
-function displayMessage(element){
-//   check if win or loose:
-for(let i=0; i<element.length; i++){
-    if(correctLetter === true && element[i] !== div[i].innerText){
-        gameMessage.innerText = "Correct! Keep Going"
-        gameMessage.style.color = "Green"
-    }
-    else if(correctLetter === false){
-        gameMessage.innerText = "Wrong! Try Another Letter"
-        gameMessage.style.color = "red"
-    }
-        else if(element[i] === div[i].innerText){
-            gameMessage.innerText = "Well done! You win"
+// function displayMessage(element){
+// //   check if win or loose:
+// for(let i=0; i < element.length; i++){
+//     if(correctLetter === true && element[i] !== div[i].innerText){
+//         gameMessage.innerText = "Correct! Keep Going"
+//         gameMessage.style.color = "Green"
+//     }
+//     else if(correctLetter === false){
+//         gameMessage.innerText = "Wrong! Try Another Letter"
+//         gameMessage.style.color = "red"
+//     }
+//         else if(element[i] === div[i].innerText){
+//             gameMessage.innerText = "Well done! You win"
+//             gameMessage.style.color = "Green"
+//         }
+//         else if(count === 5){
+//             gameMessage.innerText = "You Lost! Try Again"
+//             gameMessage.style.color = "red"
+//         }
+        
+//     }
+// }
+
+function displayMessage(){
+    //   check if win or loose:
+    console.log(completeWord)
+    console.log("CORRECT LETTER", correctLetter)
+        if(correctLetter === true){
+            gameMessage.innerText = "Correct! Keep Going"
             gameMessage.style.color = "Green"
         }
-        else if(completeWord === true && count === 5){
+        else if(count === 5){
             gameMessage.innerText = "You Lost! Try Again"
             gameMessage.style.color = "red"
         }
+        else if(correctLetter === false){
+            gameMessage.innerText = "Wrong! Try Another Letter"
+            gameMessage.style.color = "red"
+        }
+            else if(completeWord === true){
+                gameMessage.innerText = "Well done! You win"
+                gameMessage.style.color = "Green"
+            }
+            
         
     }
-}
 
 function checkWordCompletion(element){
     for(let i=0; i<element.length; i++){
-        if(div[i].innerText !== " ___ "){
-            completeWord = false
+        if(div[i].innerText === element[i]){
+            completeWord = true
         }
         else{
-            completeWord = true
+            completeWord = false
         }
     }
 }
@@ -157,7 +181,7 @@ myAlphabets.forEach((letter)=>{
     const myArray = myModeChoice.split( "" )
     console.log(myArray)
     console.log(element.target.innerText)
-    checkWordCompletion(myArray)
+    // checkWordCompletion(myArray)
     // replacing the spaces with the letter:
     for(let i=0; i<myArray.length; i++){
         // console.log(completeWord)
@@ -167,11 +191,20 @@ myAlphabets.forEach((letter)=>{
             console.log(div)
             // gameMessage.innerText = "Correct! Keep Going"
             // gameMessage.style.color = "Green"
+
+            for(let j = i; j < myArray.length; j++){
+                if(element.target.innerText === myArray[j] && element.target.innerText !== div[j].innerText){
+                    div[j].innerText = element.target.innerText
+                }
+
+            }
+
             console.log(div[i].innerText)
             correctLetter = true
             element.target.style.color = "brown"
+            break
         }
-       else if(element.target.innerText !== myArray[i] && element.target.innerText === div[i].innerText){
+       else if(element.target.innerText !== myArray[i]){
         correctLetter = false
         element.target.style.color = "brown"
        }
@@ -183,7 +216,7 @@ myAlphabets.forEach((letter)=>{
     //    }
     }
 
-
+    checkWordCompletion(myArray)
         console.log(correctLetter)
         console.log(completeWord)
         console.log(div)
